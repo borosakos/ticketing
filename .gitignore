@@ -1,0 +1,14 @@
+# Ignore built ts files
+build/
+
+# Ignore coverage report
+coverage/
+
+# Dependency directory
+**/node_modules/*
+
+# API keys and secrets
+*.env
+
+# Code editor
+.vscode
