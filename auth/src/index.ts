@@ -1,5 +1,6 @@
 import express from "express";
 import "express-async-errors";
+import mongoose from "mongoose";
 
 import { currentUserRouter } from "./routes/currentUser";
 import { signinRouter } from "./routes/signin";
@@ -22,4 +23,17 @@ app.all("*", async () => { throw new NotFoundError(); });
 
 app.use(errorHandler);
 
-export default app;
+const start = async () => {
+  try {
+    await mongoose.connect("mongodb://auth-mongo-srv:27017/auth");
+    console.log("Connected to MongoDb");
+  } catch (err) {
+    console.error(err);
+  }
+
+  app.listen(app.get("port"), () => {
+    console.log("App is running on port %d", app.get("port"));
+  });
+};
+
+start();
