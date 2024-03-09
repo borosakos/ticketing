@@ -4,6 +4,7 @@ import cookieSession from "cookie-session";
 import { errorHandler, NotFoundError, currentUser } from "@aboros-tickets/common";
 
 import { CreateTicketRouter } from "./routes/new";
+import { ShowTicketRouter } from "./routes/show";
 
 const app = express();
 app.set("trust proxy", true);
@@ -18,6 +19,7 @@ app.use(
 app.use(currentUser);
 
 app.use(CreateTicketRouter);
+app.use(ShowTicketRouter);
 
 app.all("*", async () => {
   throw new NotFoundError();
