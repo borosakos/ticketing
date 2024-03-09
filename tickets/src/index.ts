@@ -1,0 +1,22 @@
+import mongoose from "mongoose";
+
+import { app } from "./app";
+
+const start = async () => {
+  if (!process.env.JWT_KEY) {
+    throw new Error("JWT_KEY is not defined");
+  }
+
+  try {
+    await mongoose.connect("mongodb://auth-mongo-srv:27017/auth");
+    console.log("Connected to MongoDb");
+  } catch (err) {
+    console.error(err);
+  }
+
+  app.listen(app.get("port"), () => {
+    console.log("App is running on port %d", app.get("port"));
+  });
+};
+
+start();
