@@ -5,6 +5,7 @@ import { errorHandler, NotFoundError, currentUser } from "@aboros-tickets/common
 
 import { CreateTicketRouter } from "./routes/new";
 import { ShowTicketRouter } from "./routes/show";
+import { IndexTicketRouter } from "./routes";
 
 const app = express();
 app.set("trust proxy", true);
@@ -20,6 +21,7 @@ app.use(currentUser);
 
 app.use(CreateTicketRouter);
 app.use(ShowTicketRouter);
+app.use(IndexTicketRouter);
 
 app.all("*", async () => {
   throw new NotFoundError();
