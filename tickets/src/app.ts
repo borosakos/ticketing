@@ -1,7 +1,7 @@
 import express from "express";
 import "express-async-errors";
 import cookieSession from "cookie-session";
-import { errorHandler, NotFoundError } from "@aboros-tickets/common";
+import { errorHandler, NotFoundError, currentUser } from "@aboros-tickets/common";
 
 import { CreateTicketRouter } from "./routes/new";
 
@@ -15,6 +15,7 @@ app.use(
     secure: process.env.NODE_ENV !== "test"
   })
 );
+app.use(currentUser);
 
 app.use(CreateTicketRouter);
 
