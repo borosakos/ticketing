@@ -1,8 +1,9 @@
 import express from "express";
 import "express-async-errors";
 import cookieSession from "cookie-session";
-
 import { errorHandler, NotFoundError } from "@aboros-tickets/common";
+
+import { CreateTicketRouter } from "./routes/new";
 
 const app = express();
 app.set("trust proxy", true);
@@ -14,6 +15,8 @@ app.use(
     secure: process.env.NODE_ENV !== "test"
   })
 );
+
+app.use(CreateTicketRouter);
 
 app.all("*", async () => {
   throw new NotFoundError();
