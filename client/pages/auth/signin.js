@@ -3,11 +3,11 @@ import Router from "next/router";
 
 import useRequest from "../../hooks/useRequest";
 
-const SignupForm = () => {
+const SigninForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { doRequest, errors} = useRequest({
-    url: "/api/users/signup",
+    url: "/api/users/signin",
     method: 'post',
     body: { email, password },
     onSuccess: () => Router.push("/")
@@ -20,7 +20,7 @@ const SignupForm = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <h1>Sign Up</h1>
+      <h1>Sign In</h1>
       <div className="form-group">
         <label>Email address</label>
         <input
@@ -39,9 +39,9 @@ const SignupForm = () => {
         />
       </div>
       {errors}
-      <button className="btn-primary">Sign Up</button>
+      <button className="btn-primary">Sign In</button>
     </form>
   );
 };
 
-export default SignupForm;
+export default SigninForm;
