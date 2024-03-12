@@ -1,6 +1,6 @@
 import { Stan, Message } from "node-nats-streaming"; 
 
-abstract class Listener {
+export abstract class Listener {
   abstract subject: string;
   abstract queueGroupName: string;
   abstract onMessage(data: any, msg: Message): void
