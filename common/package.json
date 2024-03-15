@@ -12,7 +12,7 @@
     "build": "npm run clean && tsc"
   },
   "keywords": [],
-  "author": "",
+  "author": "Akos Boros",
   "license": "MIT",
   "devDependencies": {
     "del-cli": "^5.1.0",
