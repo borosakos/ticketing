@@ -3,6 +3,8 @@ import { body } from "express-validator";
 import { requireAuth, validateRequest } from "@aboros-tickets/common";
 
 import { Ticket } from "../models/ticket";
+import { TicketCreatedPublisher } from "@aboros-tickets/common";
+import { natsWrapper } from "../natsWrapper";
 
 const router = express.Router();
 
@@ -28,6 +30,12 @@ router.post(
     });
 
     await ticket.save();
+    await new TicketCreatedPublisher(natsWrapper.client).publish({
+      id: ticket.id,
+      title: ticket.title,
+      price: ticket.price,
+      userId: ticket.price
+    });
 
     res.status(201).send(ticket);
   }
