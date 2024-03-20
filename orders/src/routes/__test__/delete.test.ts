@@ -6,10 +6,12 @@ import { OrderStatus } from "@aboros-tickets/common";
 import { Order } from "../../models/order";
 
 import { natsWrapper } from "../../natsWrapper";
+import mongoose from "mongoose";
 
 it("marks an order as cancelled", async () => {
   // create a ticket 
   const ticket = Ticket.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
     title: "title",
     price: 200
   });
@@ -39,6 +41,7 @@ it("marks an order as cancelled", async () => {
 it("emits an order cancelled event", async () => {
  // create a ticket 
   const ticket = Ticket.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
     title: "title",
     price: 200
   });
