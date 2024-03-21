@@ -1,12 +1,11 @@
 import request from "supertest";
+import mongoose from "mongoose";
 
 import { app } from "../../app";
 import { Ticket } from "../../models/ticket";
 import { OrderStatus } from "@aboros-tickets/common";
 import { Order } from "../../models/order";
-
 import { natsWrapper } from "../../natsWrapper";
-import mongoose from "mongoose";
 
 it("marks an order as cancelled", async () => {
   // create a ticket 
