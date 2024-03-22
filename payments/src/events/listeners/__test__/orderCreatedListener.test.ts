@@ -1,7 +1,8 @@
+import mongoose from "mongoose";
+
 import { OrderCreatedEvent, OrderStatus } from "@aboros-tickets/common";
 import { natsWrapper } from "../../../natsWrapper"
 import { OrderCreatedListener } from "../orderCreatedListener"
-import mongoose from "mongoose";
 import { Message } from "node-nats-streaming";
 import { Order } from "../../../models/order";
 
