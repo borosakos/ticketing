@@ -1,6 +1,6 @@
 {
   "name": "@aboros-tickets/common",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "description": "Package containing middlewares and error handling for TicketX application.",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
