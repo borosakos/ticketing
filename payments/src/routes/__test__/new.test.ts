@@ -5,6 +5,7 @@ import { app } from "../../app";
 import { Order } from "../../models/order";
 import { OrderStatus } from "@aboros-tickets/common";
 import { stripe } from "../../stripe";
+import { Payment } from "../../models/payment";
 
 jest.mock("../../stripe");
 
@@ -83,7 +84,13 @@ it("returns 201 with valid inputs", async () => {
     .expect(201);
   
   const chargeOptions = (stripe.charges.create as jest.Mock).mock.calls[0][0];
+  const payment = await Payment.findOne({
+    orderId: order.id,
+    chargeId: "test-id"
+  })
+
   expect(chargeOptions.source).toEqual("tok_visa");
   expect(chargeOptions.amount).toEqual(20 * 100);
   expect(chargeOptions.currency).toEqual("usd");
+  expect(payment).not.toBeNull();
 });
