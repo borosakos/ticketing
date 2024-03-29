@@ -15,6 +15,9 @@ spec:
       containers:
         - name: client
           image: borosa/ticketing-client
+          env:
+            - name: NEXT_PUBLIC_STRIPE_PUBLIC
+              value: "pk_test_51Oxapo01U7XVO73fbtElrxzpTKpXBD8WTZuqLexraBkA62znodMKJcyxXUxXRw3Se3CP66YXS7coxJa1DUTNOBaN00YqdlxNe8"
 ---
 apiVersion: v1
 kind: Service
